@@ -43,7 +43,7 @@ export default function Routes() {
     }
     
     function addNewRoute() {
-        setRoutes([{field: "new route", isBeingEdited: true, time: ""} as route, ...routes])
+        setRoutes([{field: "", isBeingEdited: true, time: ""} as route, ...routes])
     }
     
     function deleteRoute(route: route) {
@@ -54,10 +54,10 @@ export default function Routes() {
     }
 
     return <div>
-                <button onClick={() => addNewRoute()}>add new route</button>
+                <button className="bigBtn" onClick={() => addNewRoute()}>add new route</button>
                 {routes.map((route, i) => 
                     <div key={i}> 
-                        <input type="text" value={route.field} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoute(e, route)}/> 
+                        <input placeholder="https://example.com" type="text" value={route.field} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoute(e, route)}/> 
                         <input type="time" value={route.time} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoutesTime(e, route)}></input>
                         <button className="button" onClick={() => editOrSaveRoute(route)}>{route.isBeingEdited === true ? "save": "edit"}</button>
                         <button className="button" onClick={() => deleteRoute(route)}>delete</button>
