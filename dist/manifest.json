@@ -4,13 +4,13 @@
   "description": "Base Level Extension",
   "version": "1.1",
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "16": "redirect.png",
+    "48": "redirect.png",
+    "128": "redirect.png"
   },
   "action": {
     "default_popup": "index.html",
-    "default_icon": "logo192.png"
+    "default_icon": "redirect.png"
   },
   "background": {
     "service_worker": "service-worker.js"
