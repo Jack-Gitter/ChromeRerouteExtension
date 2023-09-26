@@ -16,15 +16,17 @@ function timeToMillis(time: string) {
     minutes -= currentMinutes;
     hours *= 3_600_000;
     minutes *= 60000;
-    console.log(hours + minutes - (currentSeconds * 1000))
-    return hours + minutes - (currentSeconds * 1000);
+    let ret = hours + minutes - (currentSeconds * 1000)
+    if (ret < 0) {
+        ret += 86_400_000;
+    }
+    //return hours + minutes - (currentSeconds * 1000);
+    return ret
   }
 
   
 chrome.runtime.onMessage.addListener((request, sender) => {
     if ("routes" in request) {
-        console.log('routes given to backend are')
-        console.log(request.routes)
         chrome.alarms.clearAll()
         chrome.storage.local.clear()
         let routes: route[] = request.routes

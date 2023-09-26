@@ -44,14 +44,13 @@ export default function Routes() {
     
     function addNewRoute() {
         setRoutes([{field: "new route", isBeingEdited: true, time: ""} as route, ...routes])
-        chrome.runtime.sendMessage({"routes": routes})
     }
     
     function deleteRoute(route: route) {
         routes.splice(routes.indexOf(route), 1)
+        setRoutes([...routes])
         chrome.storage.local.remove(route.field)
         chrome.alarms.clear(route.field)
-        setRoutes([...routes])
     }
 
     return <div>
