@@ -20,7 +20,6 @@ function timeToMillis(time: string) {
     if (ret < 0) {
         ret += 86_400_000;
     }
-    console.log(ret)
     if (isNaN(ret) || !isFinite(ret)) {
         let newHours = today.getHours();
         let newMinutes = today.getMinutes();
@@ -37,6 +36,9 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         chrome.storage.local.clear()
         let routes: route[] = request.routes
         for (let i = 0; i < routes.length; i++) {
+            if (routes[i].time.length !== 5) {
+                continue
+            }
             chrome.alarms.create(routes[i].field, {when: Date.now() + timeToMillis(routes[i].time), periodInMinutes: 1440}) 
             chrome.storage.local.set({[routes[i].field]: [routes[i].time]})
         }
