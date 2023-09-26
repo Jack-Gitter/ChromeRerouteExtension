@@ -20,7 +20,6 @@ function timeToMillis(time: string) {
     if (ret < 0) {
         ret += 86_400_000;
     }
-    //return hours + minutes - (currentSeconds * 1000);
     return ret
   }
 
