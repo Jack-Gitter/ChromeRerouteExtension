@@ -21,13 +21,14 @@ function timeToMillis(time: string) {
   }
 
   
-chrome.runtime.onMessage.addListener(async (request, sender) => {
-    console.log('hi!')
+chrome.runtime.onMessage.addListener((request, sender) => {
     if ("routes" in request) {
+        chrome.storage.local.clear()
         chrome.alarms.clearAll()
         let routes: route[] = request.routes
         for (let i = 0; i < routes.length; i++) {
-           chrome.alarms.create(routes[i].field, {when: Date.now() + timeToMillis(routes[i].time), periodInMinutes: 1440}) 
+            chrome.alarms.create(routes[i].field, {when: Date.now() + timeToMillis(routes[i].time), periodInMinutes: 1440}) 
+            chrome.storage.local.set({[routes[i].field]: [routes[i].time]})
         }
     }
 })

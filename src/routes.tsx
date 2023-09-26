@@ -1,8 +1,19 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 
 
 export default function Routes() {
+
+    useEffect(() => {
+        chrome.storage.local.get(null, (items) => {
+            let initRoutes: route[] = []
+            for (const key in items) {
+                initRoutes.push({'field': key, 'time': items[key], 'isBeingEdited': false})
+            }
+            setRoutes(initRoutes)
+        })
+    }, [])
 
     type route = {
         field: string,
@@ -36,7 +47,7 @@ export default function Routes() {
     
     function deleteRoute(route: route) {
         routes.splice(routes.indexOf(route), 1)
-        chrome.alarms.clear(route.field)
+        chrome.runtime.sendMessage({"routes": routes})
         setRoutes([...routes])
     }
 
