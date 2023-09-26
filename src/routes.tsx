@@ -10,7 +10,7 @@ export default function Routes() {
             console.log(items)
             let initRoutes: route[] = []
             for (const key in items) {
-                initRoutes.push({'field': key, 'time': items[key][0], 'isBeingEdited': false})
+                initRoutes.unshift({'field': key, 'time': items[key][0], 'isBeingEdited': false})
             }
             setRoutes(initRoutes)
         })

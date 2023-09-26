@@ -20,6 +20,13 @@ function timeToMillis(time: string) {
     if (ret < 0) {
         ret += 86_400_000;
     }
+    console.log(ret)
+    if (isNaN(ret) || !isFinite(ret)) {
+        let newHours = today.getHours();
+        let newMinutes = today.getMinutes();
+        let newSeconds = today.getSeconds();
+        ret = newHours + newMinutes + newSeconds;
+    }
     return ret
   }
 
