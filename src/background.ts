@@ -23,8 +23,10 @@ function timeToMillis(time: string) {
   
 chrome.runtime.onMessage.addListener((request, sender) => {
     if ("routes" in request) {
-        chrome.storage.local.clear()
+        console.log('routes given to backend are')
+        console.log(request.routes)
         chrome.alarms.clearAll()
+        chrome.storage.local.clear()
         let routes: route[] = request.routes
         for (let i = 0; i < routes.length; i++) {
             chrome.alarms.create(routes[i].field, {when: Date.now() + timeToMillis(routes[i].time), periodInMinutes: 1440}) 

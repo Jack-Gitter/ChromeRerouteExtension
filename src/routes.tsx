@@ -7,9 +7,10 @@ export default function Routes() {
 
     useEffect(() => {
         chrome.storage.local.get(null, (items) => {
+            console.log(items)
             let initRoutes: route[] = []
             for (const key in items) {
-                initRoutes.push({'field': key, 'time': items[key], 'isBeingEdited': false})
+                initRoutes.push({'field': key, 'time': items[key][0], 'isBeingEdited': false})
             }
             setRoutes(initRoutes)
         })
@@ -35,19 +36,21 @@ export default function Routes() {
     
     function editOrSaveRoute(route: route) {
         route.isBeingEdited = !route.isBeingEdited
+        setRoutes([...routes])
         if (!route.isBeingEdited) {
             chrome.runtime.sendMessage({"routes": routes})
         }
-        setRoutes([...routes])
     }
     
     function addNewRoute() {
         setRoutes([{field: "new route", isBeingEdited: true, time: ""} as route, ...routes])
+        chrome.runtime.sendMessage({"routes": routes})
     }
     
     function deleteRoute(route: route) {
         routes.splice(routes.indexOf(route), 1)
-        chrome.runtime.sendMessage({"routes": routes})
+        chrome.storage.local.remove(route.field)
+        chrome.alarms.clear(route.field)
         setRoutes([...routes])
     }
 
