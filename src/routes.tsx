@@ -59,8 +59,8 @@ export default function Routes() {
                     <div key={i}> 
                         <input type="text" value={route.field} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoute(e, route)}/> 
                         <input type="time" value={route.time} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoutesTime(e, route)}></input>
-                        <button onClick={() => editOrSaveRoute(route)}>{route.isBeingEdited === true ? "save": "edit"}</button>
-                        <button onClick={() => deleteRoute(route)}>delete</button>
+                        <button className="button" onClick={() => editOrSaveRoute(route)}>{route.isBeingEdited === true ? "save": "edit"}</button>
+                        <button className="button" onClick={() => deleteRoute(route)}>delete</button>
                     </div>
                 )}
            </div>
