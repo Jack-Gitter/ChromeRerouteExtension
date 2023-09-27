@@ -22,7 +22,7 @@ export default function Routes() {
         time: string
     }
 
-    let [routes, setRoutes] = useState([{field: "new route", isBeingEdited: true} as route])
+    let [routes, setRoutes] = useState([] as route[])
    
     function updateCurrentRoute(e: React.ChangeEvent<HTMLInputElement>, route: route) {
         route.field = e.target.value 
@@ -54,13 +54,13 @@ export default function Routes() {
     }
 
     return <div>
-                <button className="bigBtn" onClick={() => addNewRoute()}>add new route</button>
+                <button className="bigBtn buttonNotBeingEdited" onClick={() => addNewRoute()}>add new route</button>
                 {routes.map((route, i) => 
                     <div key={i}> 
                         <input placeholder="https://example.com" type="text" value={route.field} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoute(e, route)}/> 
                         <input type="time" value={route.time} readOnly={!route.isBeingEdited} onChange={(e) => updateCurrentRoutesTime(e, route)}></input>
-                        <button className="button" onClick={() => editOrSaveRoute(route)}>{route.isBeingEdited === true ? "save": "edit"}</button>
-                        <button className="button" onClick={() => deleteRoute(route)}>delete</button>
+                        <button className={route.isBeingEdited ? "buttonBeingEdited" : "buttonNotBeingEdited"} onClick={() => editOrSaveRoute(route)}>{route.isBeingEdited === true ? "save": "edit"}</button>
+                        <button className={route.isBeingEdited ? "buttonBeingEdited" : "buttonNotBeingEdited"} onClick={() => deleteRoute(route)}>delete</button>
                     </div>
                 )}
            </div>

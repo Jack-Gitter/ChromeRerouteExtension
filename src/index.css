@@ -77,7 +77,9 @@ button:after {
   border-radius: 80px;
 }
 
-button:before {
+/* button:before and button:after are theh key*/
+
+/* button:before {
   background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
   content: "";
   display: block;
@@ -89,8 +91,61 @@ button:before {
   width: 100%;
   z-index: -2;
 }
+*/
 
-button:after {
+ .buttonNotBeingEdited:before {
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%); 
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+.buttonNotBeingEdited:after {
+  background-color: initial;
+  background-image: linear-gradient(#541a0f 0, #8a3a26 100%); 
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+ .buttonBeingEdited:before {
+  background-image: linear-gradient(92.83deg, rgb(53, 53, 176) 0, rgb(130, 130, 227) 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+.buttonBeingEdited:after {
+  background-color: initial;
+  background-image: linear-gradient(#211b4c 0, #145858 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+/* button:after {
   background-color: initial;
   background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
   bottom: 4px;
@@ -104,10 +159,12 @@ button:after {
   transition: all 100ms ease-out;
   z-index: -1;
 }
+*/
+
 
 button:hover:not(:disabled):before {
-  background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
-}
+  background: linear-gradient(92.83deg, rgb(121, 52, 140) 0%, rgb(249, 58, 19) 100%);
+} 
 
 button:hover:not(:disabled):after {
   bottom: 0;
@@ -123,16 +180,17 @@ button:active:not(:disabled) {
 }
 
 button:active:not(:disabled):before {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, blue 0, blue 100%);
 }
 
-button:active:not(:disabled):after {
+ button:active:not(:disabled):after {
   background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
   bottom: 4px;
   left: 4px;
   right: 4px;
   top: 4px;
 }
+
 
 button:disabled {
   cursor: default;
